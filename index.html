@@ -135,12 +135,25 @@
     }
 
     /* Strip */
-    .ticker{background:var(--ink);color:white;overflow:hidden}
+    .ticker{background:var(--ink);color:white;overflow:hidden;width:100%}
+    .ticker-track{
+      width:max-content;display:flex;animation:ticker-scroll 24s linear infinite;
+      will-change:transform;
+    }
     .ticker-inner{
       padding:15px 0;display:flex;gap:42px;white-space:nowrap;font-weight:800;
-      text-transform:uppercase;letter-spacing:.09em;font-size:12px;
+      text-transform:uppercase;letter-spacing:.09em;font-size:12px;flex:0 0 auto;
+      padding-right:42px;
     }
+    .ticker-inner span{flex:0 0 auto}
     .ticker-inner span:after{content:"✦";color:var(--yellow);margin-left:42px}
+    @keyframes ticker-scroll{
+      from{transform:translateX(0)}
+      to{transform:translateX(-50%)}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .ticker-track{animation-play-state:paused}
+    }
 
     /* About */
     .section{padding:110px 0}
@@ -163,17 +176,22 @@
     .section-head .lead{max-width:520px;font-size:17px}
     .service-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
     .service-card{
-      min-height:330px;border-radius:var(--radius);padding:30px;position:relative;overflow:hidden;
-      border:1px solid rgba(0,0,0,.06);display:flex;flex-direction:column;justify-content:space-between;
+      min-height:260px;border-radius:var(--radius);padding:30px;position:relative;overflow:hidden;
+      border:1px solid rgba(0,0,0,.06);display:grid;grid-template-columns:minmax(0,1fr) 96px;
+      grid-template-rows:auto 1fr;column-gap:24px;row-gap:20px;align-items:start;
     }
     .service-card:nth-child(1){grid-column:span 7;background:#111;color:white}
     .service-card:nth-child(2){grid-column:span 5;background:var(--yellow)}
     .service-card:nth-child(3){grid-column:span 5;background:#fff}
     .service-card:nth-child(4){grid-column:span 7;background:var(--green);color:white}
-    .service-no{font-family:"Manrope";font-weight:800;font-size:14px;opacity:.55}
-    .service-card p{max-width:440px;font-size:16px;opacity:.78;margin-top:10px}
+    .service-no{font-family:"Manrope";font-weight:800;font-size:14px;opacity:.55;grid-column:1/-1}
+    .service-card p{max-width:440px;font-size:16px;opacity:.78;margin-top:8px}
+    .service-card > div{margin-top:0;grid-column:1;grid-row:2}
     .service-icon{
-      position:absolute;right:20px;bottom:10px;font-size:100px;opacity:.13;filter:grayscale(1)
+      position:static;grid-column:2;grid-row:2;align-self:center;justify-self:center;
+      width:92px;height:92px;display:grid;place-items:center;
+      font-size:64px;line-height:1;opacity:.13;filter:grayscale(1);
+      pointer-events:none;transform:none;
     }
 
     /* Value chain */
@@ -216,7 +234,12 @@
       display:flex;flex-direction:column;justify-content:space-between;
     }
     .mission-card:nth-child(2){background:var(--yellow);border-color:transparent}
-    .mission-card .ico{font-size:36px}
+    .mission-card .ico{
+      width:58px;height:58px;border-radius:18px;display:grid;place-items:center;
+      background:#111;color:var(--yellow);border:1px solid rgba(0,0,0,.08);
+    }
+    .mission-card .ico svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .mission-card:nth-child(2) .ico{background:#fff;color:#111}
     .mission-card p{color:#69645d;margin-top:14px}
     .mission-card:nth-child(2) p{color:#29240e}
 
@@ -260,6 +283,7 @@
 
     @media (max-width: 900px){
       .navlinks{display:none}
+      .service-icon{width:82px;height:82px;font-size:58px}
       .mobile-toggle{display:block}
       .nav .navcta{display:none}
       .hero-grid,.about-grid,.chain-grid,.planet-grid,.contact-grid{grid-template-columns:1fr}
@@ -274,6 +298,11 @@
     }
     @media (max-width: 600px){
       .wrap{width:min(100% - 28px,var(--max))}
+      .ticker-inner{gap:28px;padding:14px 28px 14px 0;font-size:11px}
+      .ticker-inner span:after{margin-left:28px}
+      .ticker-track{animation-duration:20s}
+      .service-card{min-height:240px;grid-template-columns:minmax(0,1fr) 70px;column-gap:12px;padding-bottom:30px}
+      .service-icon{width:70px;height:70px;font-size:48px}
       .section{padding:78px 0}
       .hero-visual{min-height:460px}
       .hero-photo{inset:20px 0 60px 15px;border-radius:30px}
@@ -344,14 +373,24 @@
     </div>
   </header>
 
-  <div class="ticker">
-    <div class="wrap ticker-inner">
-      <span>Logística alimentaria</span>
-      <span>Agro-negocios</span>
-      <span>Comercio justo</span>
-      <span>Innovación</span>
-      <span>Relaciones de largo plazo</span>
-      <span>Sostenibilidad</span>
+  <div class="ticker" aria-label="Áreas de Bee Global Food">
+    <div class="ticker-track">
+      <div class="ticker-inner">
+        <span>Logística alimentaria</span>
+        <span>Agro-negocios</span>
+        <span>Comercio justo</span>
+        <span>Innovación</span>
+        <span>Relaciones de largo plazo</span>
+        <span>Sostenibilidad</span>
+      </div>
+      <div class="ticker-inner" aria-hidden="true">
+        <span>Logística alimentaria</span>
+        <span>Agro-negocios</span>
+        <span>Comercio justo</span>
+        <span>Innovación</span>
+        <span>Relaciones de largo plazo</span>
+        <span>Sostenibilidad</span>
+      </div>
     </div>
   </div>
 
@@ -515,7 +554,7 @@
 
       <div class="mission-grid">
         <article class="mission-card">
-          <div class="ico">⚙️</div>
+          <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle><path d="M12 4V2M12 22v-2M4 12H2M22 12h-2"></path></svg></div>
           <div>
             <h3>Misión</h3>
             <p>Liderar la logística alimentaria con fuerza y precisión, asegurar un pago justo a productores y entregar productos de alta calidad, combinando innovación, eficiencia y experiencia.</p>
@@ -523,7 +562,7 @@
         </article>
 
         <article class="mission-card">
-          <div class="ico">◎</div>
+          <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"></path><circle cx="12" cy="12" r="2.8"></circle></svg></div>
           <div>
             <h3>Visión</h3>
             <p>Ser una empresa líder en logística alimentaria en México y Latinoamérica, reconocida por su excelencia operativa y por transformar la manera en que los alimentos llegan del productor al consumidor.</p>
@@ -531,7 +570,7 @@
         </article>
 
         <article class="mission-card">
-          <div class="ico">↗</div>
+          <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20c3 0 5-2.5 5-6s-2-6-5-6-5 2.5-5 6 2 6 5 6Z"></path><path d="M8 11h8M7.2 15h9.6M10 8 8.5 5.5M14 8l1.5-2.5"></path><path d="M7.5 10C4.5 8 2.5 9.5 3.5 12.5c.7 2 2.2 2.7 3.7 2.3M16.5 10c3-2 5-0.5 4 2.5-.7 2-2.2 2.7-3.7 2.3"></path></svg></div>
           <div>
             <h3>Propósito</h3>
             <p>Crear un negocio que transforme la industria, genere respeto y deje una huella tangible, inspirando determinación, estrategia y excelencia en quienes confían en Bee Global Food.</p>
