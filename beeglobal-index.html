@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Bee Global Food — logística alimentaria, agro-negocios y soluciones integrales que conectan productores, empresas y mercados con confianza." />
+  <title>Bee Global Food | Conectamos sabores, construimos confianza</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --yellow:#FFC700;
+      --yellow-2:#FFD84D;
+      --yellow-soft:#FFF7D0;
+      --ink:#111111;
+      --muted:#66615A;
+      --line:#E9E5DE;
+      --cream:#FAF8F3;
+      --white:#FFFFFF;
+      --green:#244A37;
+      --radius:28px;
+      --shadow:0 22px 60px rgba(21,17,10,.12);
+      --max:1200px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:var(--white);
+      font-family:"DM Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.5;
+    }
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    button,input,textarea,select{font:inherit}
+    .wrap{width:min(var(--max),calc(100% - 40px));margin-inline:auto}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      text-transform:uppercase;letter-spacing:.13em;font-size:12px;font-weight:800;
+    }
+    .eyebrow:before{
+      content:"";width:26px;height:4px;background:var(--yellow);border-radius:99px;
+    }
+    h1,h2,h3{font-family:"Manrope",sans-serif;line-height:1.05;margin:0}
+    h1{font-size:clamp(44px,7.3vw,94px);letter-spacing:-.055em}
+    h2{font-size:clamp(36px,4.5vw,64px);letter-spacing:-.045em}
+    h3{font-size:clamp(21px,2vw,28px);letter-spacing:-.025em}
+    p{margin:0}
+    .lead{font-size:clamp(18px,2vw,22px);color:var(--muted);max-width:760px}
+    .btn{
+      min-height:52px;padding:0 22px;border-radius:999px;border:1px solid transparent;
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      font-weight:800;transition:.2s ease;cursor:pointer;
+    }
+    .btn.primary{background:var(--ink);color:white}
+    .btn.primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.18)}
+    .btn.yellow{background:var(--yellow);color:var(--ink)}
+    .btn.ghost{border-color:#d7d2c9;background:rgba(255,255,255,.75)}
+    .arrow{font-size:20px;line-height:1}
+
+    /* Nav */
+    .nav-shell{
+      position:fixed;z-index:80;top:16px;left:0;right:0;
+    }
+    .nav{
+      width:min(1160px,calc(100% - 24px));margin:auto;
+      display:flex;align-items:center;justify-content:space-between;gap:20px;
+      padding:10px 12px 10px 16px;border:1px solid rgba(0,0,0,.07);
+      background:rgba(255,255,255,.90);backdrop-filter:blur(18px);
+      border-radius:999px;box-shadow:0 10px 32px rgba(17,17,17,.08);
+    }
+    .brand{display:flex;align-items:center;gap:11px;font-family:"Manrope";font-weight:800}
+    .brand-mark{
+      width:38px;height:38px;border-radius:13px;background:var(--yellow);
+      display:grid;place-items:center;position:relative;overflow:hidden;
+    }
+    .brand-mark:before,.brand-mark:after{
+      content:"";position:absolute;background:#111;transform:rotate(-28deg);border-radius:4px;
+      width:22px;height:5px;
+    }
+    .brand-mark:before{top:11px;left:7px}
+    .brand-mark:after{bottom:10px;right:7px}
+    .brand small{display:block;color:#756f67;font-size:10px;font-weight:700;letter-spacing:.04em;margin-top:-1px}
+    .navlinks{display:flex;gap:26px;font-size:14px;font-weight:700;color:#4d4943}
+    .navlinks a:hover{color:#000}
+    .navcta{min-height:42px;padding:0 17px}
+    .mobile-toggle{display:none;border:0;background:transparent;font-size:24px}
+
+    /* Hero */
+    .hero{
+      min-height:100svh;padding:145px 0 70px;position:relative;overflow:hidden;
+      background:
+        radial-gradient(circle at 77% 21%, rgba(255,199,0,.22), transparent 26%),
+        linear-gradient(180deg,#fff 0%,#fbf9f4 100%);
+    }
+    .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:54px;align-items:center}
+    .hero-copy{position:relative;z-index:2}
+    .hero h1 span{display:block;color:#D69F00}
+    .hero .lead{margin-top:25px;max-width:660px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:31px}
+    .trust-row{
+      margin-top:44px;padding-top:24px;border-top:1px solid var(--line);
+      display:grid;grid-template-columns:repeat(3,1fr);gap:15px;
+    }
+    .trust-item strong{display:block;font-family:"Manrope";font-size:22px}
+    .trust-item span{font-size:13px;color:var(--muted)}
+    .hero-visual{position:relative;min-height:650px}
+    .hero-photo{
+      position:absolute;inset:20px 0 50px 64px;border-radius:46px;overflow:hidden;box-shadow:var(--shadow);
+    }
+    .hero-photo img{width:100%;height:100%;object-fit:cover}
+    .hero-photo:after{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg,transparent 46%,rgba(0,0,0,.44));
+    }
+    .floating-card{
+      position:absolute;left:0;bottom:0;width:min(330px,75%);
+      padding:23px;background:white;border-radius:24px;box-shadow:var(--shadow);z-index:3;
+    }
+    .floating-card .hex{
+      width:48px;height:48px;background:var(--yellow);clip-path:polygon(25% 6%,75% 6%,100% 50%,75% 94%,25% 94%,0 50%);
+      display:grid;place-items:center;font-size:24px;margin-bottom:15px;
+    }
+    .floating-card strong{font-family:"Manrope";font-size:20px}
+    .floating-card p{color:var(--muted);font-size:14px;margin-top:7px}
+    .bee-badge{
+      position:absolute;right:-8px;top:2px;width:138px;height:138px;border-radius:50%;
+      background:var(--yellow);display:grid;place-items:center;font-size:64px;transform:rotate(8deg);
+      border:10px solid white;box-shadow:0 14px 30px rgba(0,0,0,.12);
+    }
+
+    /* Strip */
+    .ticker{background:var(--ink);color:white;overflow:hidden}
+    .ticker-inner{
+      padding:15px 0;display:flex;gap:42px;white-space:nowrap;font-weight:800;
+      text-transform:uppercase;letter-spacing:.09em;font-size:12px;
+    }
+    .ticker-inner span:after{content:"✦";color:var(--yellow);margin-left:42px}
+
+    /* About */
+    .section{padding:110px 0}
+    .about-grid{display:grid;grid-template-columns:.88fr 1.12fr;gap:80px;align-items:start}
+    .about-sticky{position:sticky;top:120px}
+    .about-sticky h2{margin-top:16px}
+    .about-copy{display:grid;gap:25px}
+    .about-copy .big{
+      font-family:"Manrope";font-size:clamp(28px,3.2vw,43px);line-height:1.15;letter-spacing:-.035em
+    }
+    .about-copy p{font-size:18px;color:var(--muted)}
+    .principles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
+    .principle{padding:22px;border-radius:22px;background:var(--cream);border:1px solid #eee9df}
+    .principle b{display:block;margin-bottom:6px}
+
+    /* Services */
+    .services{background:var(--cream)}
+    .section-head{display:flex;justify-content:space-between;gap:35px;align-items:end;margin-bottom:45px}
+    .section-head h2{margin-top:16px}
+    .section-head .lead{max-width:520px;font-size:17px}
+    .service-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .service-card{
+      min-height:330px;border-radius:var(--radius);padding:30px;position:relative;overflow:hidden;
+      border:1px solid rgba(0,0,0,.06);display:flex;flex-direction:column;justify-content:space-between;
+    }
+    .service-card:nth-child(1){grid-column:span 7;background:#111;color:white}
+    .service-card:nth-child(2){grid-column:span 5;background:var(--yellow)}
+    .service-card:nth-child(3){grid-column:span 5;background:#fff}
+    .service-card:nth-child(4){grid-column:span 7;background:var(--green);color:white}
+    .service-no{font-family:"Manrope";font-weight:800;font-size:14px;opacity:.55}
+    .service-card p{max-width:440px;font-size:16px;opacity:.78;margin-top:10px}
+    .service-icon{
+      position:absolute;right:20px;bottom:10px;font-size:100px;opacity:.13;filter:grayscale(1)
+    }
+
+    /* Value chain */
+    .chain-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+    .chain-photo{height:580px;border-radius:40px;overflow:hidden;position:relative}
+    .chain-photo img{width:100%;height:100%;object-fit:cover}
+    .chain-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.25))}
+    .chain-list{margin-top:35px;display:grid;gap:8px}
+    .chain-item{
+      display:grid;grid-template-columns:52px 1fr auto;gap:16px;align-items:center;
+      padding:18px 0;border-bottom:1px solid var(--line)
+    }
+    .chain-item .num{
+      width:44px;height:44px;border-radius:50%;background:var(--yellow-soft);display:grid;place-items:center;font-weight:800
+    }
+    .chain-item b{font-family:"Manrope";font-size:18px}
+    .chain-item small{display:block;color:var(--muted);margin-top:3px}
+    .chain-item .arr{font-size:20px}
+
+    /* Products */
+    .products{background:#111;color:white}
+    .products .section-head .lead{color:#b9b7b1}
+    .product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .product-card{
+      min-height:420px;border-radius:26px;overflow:hidden;position:relative;background:#222;
+    }
+    .product-card img{width:100%;height:100%;object-fit:cover;transition:.45s ease}
+    .product-card:hover img{transform:scale(1.05)}
+    .product-card:after{
+      content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.82));
+    }
+    .product-meta{position:absolute;z-index:2;left:22px;right:22px;bottom:22px}
+    .product-meta span{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:#f8d45a;font-weight:800}
+    .product-meta h3{margin-top:7px}
+
+    /* Mission */
+    .mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .mission-card{
+      min-height:350px;padding:31px;border:1px solid var(--line);border-radius:28px;background:white;
+      display:flex;flex-direction:column;justify-content:space-between;
+    }
+    .mission-card:nth-child(2){background:var(--yellow);border-color:transparent}
+    .mission-card .ico{font-size:36px}
+    .mission-card p{color:#69645d;margin-top:14px}
+    .mission-card:nth-child(2) p{color:#29240e}
+
+    /* Planet */
+    .planet{
+      background:linear-gradient(135deg,#173727,#2e5b42);color:white;position:relative;overflow:hidden
+    }
+    .planet:after{
+      content:"";position:absolute;width:500px;height:500px;border:1px solid rgba(255,255,255,.12);
+      border-radius:50%;right:-120px;top:-140px;box-shadow:0 0 0 90px rgba(255,255,255,.025),0 0 0 180px rgba(255,255,255,.02)
+    }
+    .planet-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;position:relative;z-index:2}
+    .planet .lead{color:#d9e6dd;margin-top:20px}
+    .planet-points{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:30px}
+    .planet-point{padding:19px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:18px}
+    .planet-point strong{display:block}
+    .planet-photo{height:520px;border-radius:34px;overflow:hidden}
+    .planet-photo img{width:100%;height:100%;object-fit:cover}
+
+    /* Contact */
+    .contact{background:var(--yellow)}
+    .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:start}
+    .contact-copy p{margin-top:20px;max-width:510px;font-size:18px}
+    .contact-form{
+      background:white;padding:30px;border-radius:28px;box-shadow:0 20px 50px rgba(88,62,0,.13)
+    }
+    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .field{display:grid;gap:7px}
+    .field.full{grid-column:1/-1}
+    label{font-weight:800;font-size:13px}
+    input,textarea,select{
+      width:100%;border:1px solid #ded9cf;background:#fff;border-radius:14px;padding:14px 15px;outline:0
+    }
+    input:focus,textarea:focus,select:focus{border-color:#111}
+    textarea{min-height:120px;resize:vertical}
+    .form-note{font-size:12px;color:#79746c;margin-top:10px}
+
+    footer{background:#111;color:white;padding:42px 0}
+    .footer-grid{display:flex;justify-content:space-between;gap:30px;align-items:center}
+    .footer-right{display:flex;gap:22px;color:#b7b5b0;font-size:14px}
+
+    @media (max-width: 900px){
+      .navlinks{display:none}
+      .mobile-toggle{display:block}
+      .nav .navcta{display:none}
+      .hero-grid,.about-grid,.chain-grid,.planet-grid,.contact-grid{grid-template-columns:1fr}
+      .hero{padding-top:120px}
+      .hero-visual{min-height:520px}
+      .hero-photo{inset:10px 0 45px 30px}
+      .about-sticky{position:static}
+      .section-head{align-items:start;flex-direction:column}
+      .service-card:nth-child(n){grid-column:span 12}
+      .product-grid{grid-template-columns:repeat(2,1fr)}
+      .mission-grid{grid-template-columns:1fr}
+    }
+    @media (max-width: 600px){
+      .wrap{width:min(100% - 28px,var(--max))}
+      .section{padding:78px 0}
+      .hero-visual{min-height:460px}
+      .hero-photo{inset:20px 0 60px 15px;border-radius:30px}
+      .bee-badge{width:96px;height:96px;font-size:44px}
+      .floating-card{padding:18px}
+      .trust-row{grid-template-columns:1fr;gap:16px}
+      .principles,.planet-points,.field-grid,.product-grid{grid-template-columns:1fr}
+      .product-card{min-height:380px}
+      .chain-photo,.planet-photo{height:420px}
+      .footer-grid{align-items:flex-start;flex-direction:column}
+      .footer-right{flex-wrap:wrap}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav-shell">
+    <nav class="nav">
+      <a class="brand" href="#inicio">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Bee Global Food<small>Agro-negocios · Logística · Confianza</small></span>
+      </a>
+
+      <div class="navlinks">
+        <a href="#nosotros">Nosotros</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#productos">Productos</a>
+        <a href="#planeta">Planeta</a>
+      </div>
+
+      <a class="btn primary navcta" href="#contacto">Hablemos <span class="arrow">↗</span></a>
+      <button class="mobile-toggle" aria-label="Abrir menú" onclick="document.querySelector('.navlinks').classList.toggle('open')">☰</button>
+    </nav>
+  </div>
+
+  <header class="hero" id="inicio">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">Bee Global Food</div>
+        <h1 style="margin-top:18px">Conectamos sabores, <span>construimos confianza.</span></h1>
+        <p class="lead">
+          Impulsamos agro-negocios con logística alimentaria, comercialización y soluciones integrales que conectan productores, empresas y mercados de forma sólida, transparente y eficiente.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#servicios">Conocer servicios <span class="arrow">↓</span></a>
+          <a class="btn ghost" href="#contacto">Crear una alianza <span class="arrow">↗</span></a>
+        </div>
+
+        <div class="trust-row">
+          <div class="trust-item"><strong>México</strong><span>Origen, operación y visión nacional</span></div>
+          <div class="trust-item"><strong>LatAm</strong><span>Ambición de expansión regional</span></div>
+          <div class="trust-item"><strong>360°</strong><span>Del productor al consumidor</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-photo">
+          <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ff?auto=format&fit=crop&w=1400&q=88" alt="Campo agrícola y cadena de suministro alimentaria">
+        </div>
+        <div class="bee-badge">🐝</div>
+        <div class="floating-card">
+          <div class="hex">🌎</div>
+          <strong>Más que transacciones.</strong>
+          <p>Construimos relaciones que generan confianza, propósito y expansión global.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="ticker">
+    <div class="wrap ticker-inner">
+      <span>Logística alimentaria</span>
+      <span>Agro-negocios</span>
+      <span>Comercio justo</span>
+      <span>Innovación</span>
+      <span>Relaciones de largo plazo</span>
+      <span>Sostenibilidad</span>
+    </div>
+  </div>
+
+  <section class="section" id="nosotros">
+    <div class="wrap about-grid">
+      <div class="about-sticky">
+        <div class="eyebrow">Quiénes somos</div>
+        <h2>Confianza que se construye en cada eslabón.</h2>
+      </div>
+
+      <div class="about-copy">
+        <p class="big">
+          En Bee Global Food creemos que la confianza es el pilar de todo negocio. Por eso cada operación debe transmitir respaldo, profesionalismo y compromiso.
+        </p>
+        <p>
+          Nuestra visión de los agro-negocios va más allá de comercializar alimentos: buscamos crear un puente sólido entre productores y clientes, con procesos claros, relaciones transparentes y una imagen que proyecte seguridad a nivel nacional e internacional.
+        </p>
+
+        <div class="principles">
+          <div class="principle"><b>Respaldo</b><span>Relaciones sólidas con productores, clientes y aliados.</span></div>
+          <div class="principle"><b>Transparencia</b><span>Información clara, trazabilidad y compromiso en cada operación.</span></div>
+          <div class="principle"><b>Innovación</b><span>Procesos y soluciones que elevan la eficiencia de la cadena.</span></div>
+          <div class="principle"><b>Cercanía</b><span>Una marca humana, accesible y enfocada en relaciones duraderas.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section services" id="servicios">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Soluciones BGF</div>
+          <h2>Servicios que mueven negocio.</h2>
+        </div>
+        <p class="lead">
+          Una oferta pensada para acompañar la operación de empresas, comedores y cadenas de suministro con precisión, experiencia y capacidad de respuesta.
+        </p>
+      </div>
+
+      <div class="service-grid">
+        <article class="service-card">
+          <span class="service-no">01 — Consultoría integral</span>
+          <div>
+            <h3>Estrategia para hacer más fuerte tu operación.</h3>
+            <p>Diagnóstico, planeación y acompañamiento para optimizar procesos, abastecimiento, logística y toma de decisiones.</p>
+          </div>
+          <span class="service-icon">⌁</span>
+        </article>
+
+        <article class="service-card">
+          <span class="service-no">02 — Comedor industrial</span>
+          <div>
+            <h3>Servicio de comedor industrial.</h3>
+            <p>Soluciones alimentarias para equipos de trabajo, con enfoque en calidad, continuidad operativa y servicio.</p>
+          </div>
+          <span class="service-icon">🍽️</span>
+        </article>
+
+        <article class="service-card">
+          <span class="service-no">03 — Logística de personal</span>
+          <div>
+            <h3>Coordinación que mantiene el ritmo.</h3>
+            <p>Apoyo operativo y logístico para movilización y administración de personal en operaciones que no pueden detenerse.</p>
+          </div>
+          <span class="service-icon">↔</span>
+        </article>
+
+        <article class="service-card">
+          <span class="service-no">04 — Energy & Cooling</span>
+          <div>
+            <h3>Infraestructura para preservar valor.</h3>
+            <p>Soluciones relacionadas con energía, enfriamiento y continuidad para operaciones sensibles dentro de la cadena alimentaria.</p>
+          </div>
+          <span class="service-icon">❄</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap chain-grid">
+      <div class="chain-photo">
+        <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=1200&q=88" alt="Productor agrícola trabajando">
+      </div>
+
+      <div>
+        <div class="eyebrow">Cadena de valor</div>
+        <h2 style="margin-top:16px">Del productor a la mesa, con precisión.</h2>
+        <p class="lead" style="margin-top:20px">
+          Nuestra estrategia combina eficiencia, experiencia e innovación para entregar productos de calidad y generar relaciones confiables en cada etapa.
+        </p>
+
+        <div class="chain-list">
+          <div class="chain-item">
+            <span class="num">01</span>
+            <div><b>Origen y productores</b><small>Relaciones de confianza y abastecimiento responsable.</small></div>
+            <span class="arr">↗</span>
+          </div>
+          <div class="chain-item">
+            <span class="num">02</span>
+            <div><b>Selección y comercialización</b><small>Productos con identidad, valor y potencial de mercado.</small></div>
+            <span class="arr">↗</span>
+          </div>
+          <div class="chain-item">
+            <span class="num">03</span>
+            <div><b>Logística</b><small>Coordinación, cuidado y cumplimiento.</small></div>
+            <span class="arr">↗</span>
+          </div>
+          <div class="chain-item">
+            <span class="num">04</span>
+            <div><b>Cliente y consumidor</b><small>Entrega con respaldo y experiencia de marca.</small></div>
+            <span class="arr">↗</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section products" id="productos">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Artículos y comercialización</div>
+          <h2>Productos con origen y carácter.</h2>
+        </div>
+        <p class="lead">
+          Una selección que refleja la riqueza del campo mexicano y el potencial de llevar productos con identidad a nuevos mercados.
+        </p>
+      </div>
+
+      <div class="product-grid">
+        <article class="product-card">
+          <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=900&q=85" alt="Miel">
+          <div class="product-meta"><span>Yucatán</span><h3>Miel “Señora Abeja”</h3></div>
+        </article>
+        <article class="product-card">
+          <img src="https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=900&q=85" alt="Chile habanero">
+          <div class="product-meta"><span>Origen mexicano</span><h3>Chile habanero</h3></div>
+        </article>
+        <article class="product-card">
+          <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=900&q=85" alt="Café">
+          <div class="product-meta"><span>Selección</span><h3>Café verde y tostado</h3></div>
+        </article>
+        <article class="product-card">
+          <img src="https://images.unsplash.com/photo-1601000938259-9e92002320b7?auto=format&fit=crop&w=900&q=85" alt="Mandarinas">
+          <div class="product-meta"><span>Temporada</span><h3>Mandarina</h3></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Dirección de marca</div>
+          <h2>Misión, visión y propósito.</h2>
+        </div>
+      </div>
+
+      <div class="mission-grid">
+        <article class="mission-card">
+          <div class="ico">⚙️</div>
+          <div>
+            <h3>Misión</h3>
+            <p>Liderar la logística alimentaria con fuerza y precisión, asegurar un pago justo a productores y entregar productos de alta calidad, combinando innovación, eficiencia y experiencia.</p>
+          </div>
+        </article>
+
+        <article class="mission-card">
+          <div class="ico">◎</div>
+          <div>
+            <h3>Visión</h3>
+            <p>Ser una empresa líder en logística alimentaria en México y Latinoamérica, reconocida por su excelencia operativa y por transformar la manera en que los alimentos llegan del productor al consumidor.</p>
+          </div>
+        </article>
+
+        <article class="mission-card">
+          <div class="ico">↗</div>
+          <div>
+            <h3>Propósito</h3>
+            <p>Crear un negocio que transforme la industria, genere respeto y deje una huella tangible, inspirando determinación, estrategia y excelencia en quienes confían en Bee Global Food.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section planet" id="planeta">
+    <div class="wrap planet-grid">
+      <div>
+        <div class="eyebrow">Planeta</div>
+        <h2 style="margin-top:16px">Crecer dejando una huella positiva.</h2>
+        <p class="lead">
+          Bee Global Food puede convertir su operación en una plataforma de responsabilidad social y ambiental: comercio justo, mejores prácticas, alianzas responsables y una relación más consciente con el origen de cada producto.
+        </p>
+        <div class="planet-points">
+          <div class="planet-point"><strong>Comercio justo</strong><span>Relaciones que reconozcan el valor del productor.</span></div>
+          <div class="planet-point"><strong>Abastecimiento responsable</strong><span>Decisiones que cuiden origen, calidad y continuidad.</span></div>
+          <div class="planet-point"><strong>Impacto medible</strong><span>Acciones comunicables y con resultados visibles.</span></div>
+          <div class="planet-point"><strong>Visión de futuro</strong><span>Crecimiento con responsabilidad y permanencia.</span></div>
+        </div>
+      </div>
+
+      <div class="planet-photo">
+        <img src="https://images.unsplash.com/photo-1492496913980-501348b61469?auto=format&fit=crop&w=1200&q=88" alt="Cultivo sustentable">
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contacto">
+    <div class="wrap contact-grid">
+      <div class="contact-copy">
+        <div class="eyebrow">Contacto</div>
+        <h2 style="margin-top:16px">Construyamos una relación que sí genere valor.</h2>
+        <p>
+          Cuéntanos qué necesitas: suministro, productos, logística, comedor industrial, consultoría o una alianza comercial. Bee Global Food está pensado para hacer negocios con confianza.
+        </p>
+      </div>
+
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Gracias. Este formulario es demostrativo; conecta aquí el correo, CRM o WhatsApp de Bee Global Food.');">
+        <div class="field-grid">
+          <div class="field">
+            <label>Nombre</label>
+            <input type="text" placeholder="Tu nombre" required>
+          </div>
+          <div class="field">
+            <label>Empresa</label>
+            <input type="text" placeholder="Nombre de tu empresa">
+          </div>
+          <div class="field">
+            <label>Correo</label>
+            <input type="email" placeholder="correo@empresa.com" required>
+          </div>
+          <div class="field">
+            <label>Interés</label>
+            <select>
+              <option>Selecciona una opción</option>
+              <option>Consultoría integral</option>
+              <option>Comedor industrial</option>
+              <option>Logística de personal</option>
+              <option>Energy & Cooling</option>
+              <option>Comercialización de productos</option>
+              <option>Alianza comercial</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label>Mensaje</label>
+            <textarea placeholder="Platícanos sobre tu proyecto o necesidad"></textarea>
+          </div>
+          <div class="field full">
+            <button class="btn primary" type="submit">Enviar mensaje <span class="arrow">↗</span></button>
+            <div class="form-note">Formulario listo para conectarse a correo, CRM, WhatsApp o backend.</div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <a class="brand" href="#inicio">
+        <span class="brand-mark"></span>
+        <span>Bee Global Food<small style="color:#8f8b84">Conectamos sabores, construimos confianza</small></span>
+      </a>
+      <div class="footer-right">
+        <span>beeGlobal.mx</span>
+        <span>© <span id="year"></span> Bee Global Food</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Smooth reveal
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.animate(
+            [{opacity:0,transform:"translateY(22px)"},{opacity:1,transform:"translateY(0)"}],
+            {duration:650,easing:"cubic-bezier(.2,.7,.2,1)",fill:"forwards"}
+          );
+          observer.unobserve(entry.target);
+        }
+      });
+    },{threshold:.12});
+
+    document.querySelectorAll(".service-card,.product-card,.mission-card,.chain-item,.principle,.planet-point").forEach(el=>{
+      el.style.opacity="0";
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
