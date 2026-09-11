@@ -91,6 +91,23 @@
     .navcta{min-height:42px;padding:0 17px}
     .mobile-toggle{display:none;border:0;background:transparent;font-size:24px}
 
+
+    .floating-contact-btn{
+      position:fixed;
+      left:50%;
+      bottom:18px;
+      transform:translateX(-50%);
+      z-index:120;
+      background:var(--yellow);
+      color:var(--ink);
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:999px;
+      padding:14px 22px;
+      font-weight:800;
+      box-shadow:0 14px 32px rgba(0,0,0,.18);
+    }
+    .floating-contact-btn:hover{transform:translateX(-50%) translateY(-2px)}
+
     /* Hero */
     .hero{
       min-height:100svh;padding:145px 0 70px;position:relative;overflow:hidden;
@@ -658,6 +675,9 @@
       </form>
     </div>
   </section>
+
+
+  <a class="floating-contact-btn" href="#contacto">Contáctanos</a>
 
   <footer>
     <div class="wrap footer-grid">
