@@ -291,8 +291,8 @@
       width:100%;border:1px solid #ded9cf;background:#fff;border-radius:14px;padding:14px 15px;outline:0
     }
     input:focus,textarea:focus,select:focus{border-color:#111}
-    .phone-group{display:grid;grid-template-columns:138px 1fr;gap:8px}
-    .phone-group select{padding-left:12px}
+    .phone-group{display:grid;grid-template-columns:105px minmax(0,1fr);gap:8px}
+    .phone-group select{padding-left:9px;padding-right:7px}
     .phone-group input{min-width:0}
     textarea{min-height:120px;resize:vertical}
     .form-note{font-size:12px;color:#79746c;margin-top:10px}
@@ -351,7 +351,7 @@
       .floating-card{padding:18px;bottom:-45px}
       .trust-row{grid-template-columns:1fr;gap:16px}
       .principles,.planet-points,.field-grid,.product-grid{grid-template-columns:1fr}
-      .phone-group{grid-template-columns:125px 1fr}
+      .phone-group{grid-template-columns:96px minmax(0,1fr)}
       .product-card{min-height:380px}
       .chain-photo,.planet-photo{height:420px}
       .footer-grid{align-items:flex-start;flex-direction:column}
@@ -699,7 +699,7 @@
               <input type="tel" name="telefono" inputmode="tel" autocomplete="tel-national" placeholder="442 123 4567" required>
             </div>
           </div>
-          <div class="field">
+          <div class="field full">
             <label>Interés</label>
             <select name="interes" required>
               <option value="" selected disabled>Selecciona una opción</option>
