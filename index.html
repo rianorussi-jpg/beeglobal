@@ -293,6 +293,9 @@
     input:focus,textarea:focus,select:focus{border-color:#111}
     textarea{min-height:120px;resize:vertical}
     .form-note{font-size:12px;color:#79746c;margin-top:10px}
+    .form-status{display:none;margin-top:12px;padding:12px 14px;border-radius:12px;font-size:14px;font-weight:700}
+    .form-status.success{display:block;background:#e9f8ee;color:#176b35}
+    .form-status.error{display:block;background:#fff0f0;color:#9d2424}
 
 
     .footer-socials{display:flex;align-items:center;gap:10px}
@@ -655,39 +658,37 @@
         </p>
       </div>
 
-      <form class="contact-form" onsubmit="event.preventDefault(); alert('Gracias. Este formulario es demostrativo; conecta aquí el correo, CRM o WhatsApp de Bee Global Food.');">
+      <form class="contact-form" id="contactForm">
         <div class="field-grid">
           <div class="field">
             <label>Nombre</label>
-            <input type="text" placeholder="Tu nombre" required>
+            <input type="text" name="nombre" placeholder="Tu nombre" required>
           </div>
           <div class="field">
             <label>Empresa</label>
-            <input type="text" placeholder="Nombre de tu empresa">
+            <input type="text" name="empresa" placeholder="Nombre de tu empresa">
           </div>
           <div class="field">
             <label>Correo</label>
-            <input type="email" placeholder="correo@empresa.com" required>
+            <input type="email" name="correo" placeholder="correo@empresa.com" required>
           </div>
           <div class="field">
             <label>Interés</label>
-            <select>
-              <option>Selecciona una opción</option>
-              <option>Consultoría integral</option>
-              <option>Comedor industrial</option>
-              <option>Logística de personal</option>
-              <option>Energy & Cooling</option>
-              <option>Comercialización de productos</option>
-              <option>Alianza comercial</option>
+            <select name="interes" required>
+              <option value="" selected disabled>Selecciona una opción</option>
+              <option>Consultoría logística integral</option>
+              <option>Servicio de importación</option>
+              <option>Servicio de exportación</option>
             </select>
           </div>
           <div class="field full">
             <label>Mensaje</label>
-            <textarea placeholder="Platícanos sobre tu proyecto o necesidad"></textarea>
+            <textarea name="mensaje" placeholder="Platícanos sobre tu proyecto o necesidad" required></textarea>
           </div>
           <div class="field full">
-            <button class="btn primary" type="submit">Enviar mensaje <span class="arrow">↗</span></button>
-            <div class="form-note">Formulario listo para conectarse a correo, CRM, WhatsApp o backend.</div>
+            <button class="btn primary" id="submitBtn" type="submit">Enviar mensaje <span class="arrow">↗</span></button>
+            <div class="form-note">Tus datos serán enviados de forma segura al equipo de Bee Global Food.</div>
+            <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
           </div>
         </div>
       </form>
@@ -723,6 +724,41 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const contactForm = document.getElementById("contactForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const formStatus = document.getElementById("formStatus");
+
+    contactForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      formStatus.className = "form-status";
+      formStatus.textContent = "";
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Enviando…';
+
+      const data = Object.fromEntries(new FormData(contactForm).entries());
+
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(result.error || "No se pudo enviar el mensaje");
+
+        formStatus.className = "form-status success";
+        formStatus.textContent = "✓ Mensaje enviado correctamente. Nos pondremos en contacto contigo.";
+        contactForm.reset();
+      } catch (error) {
+        formStatus.className = "form-status error";
+        formStatus.textContent = "No pudimos enviar el mensaje. Intenta nuevamente en unos momentos.";
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Enviar mensaje <span class="arrow">↗</span>';
+      }
+    });
 
     // Smooth reveal
     const observer = new IntersectionObserver((entries)=>{
