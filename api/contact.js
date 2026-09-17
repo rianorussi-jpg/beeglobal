@@ -4,8 +4,8 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Método no permitido" });
   }
 
-  const { nombre, empresa, correo, interes, mensaje } = req.body || {};
-  if (!nombre || !correo || !interes || !mensaje) {
+  const { nombre, empresa, correo, lada, telefono, interes, mensaje } = req.body || {};
+  if (!nombre || !correo || !lada || !telefono || !interes || !mensaje) {
     return res.status(400).json({ error: "Faltan campos obligatorios" });
   }
 
@@ -26,6 +26,7 @@ export default async function handler(req, res) {
     `👤 Nombre: ${clean(nombre)}`,
     `🏢 Empresa: ${clean(empresa) || "No especificada"}`,
     `✉️ Correo: ${clean(correo)}`,
+    `📱 Teléfono: ${clean(lada)} ${clean(telefono)}`,
     `📌 Interés: ${clean(interes)}`,
     "",
     "💬 Mensaje:",
